@@ -1,7 +1,1 @@
-POST  http://localhost:3001/api/persons
-Content-Type: application/json
-
-{
-    "name":"asasrto Hellas",
-    "number":"123545"
-}
+GET   https://puhelinluettelo-backend-18i0.onrender.com/api/persons
