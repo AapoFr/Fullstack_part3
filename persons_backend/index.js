@@ -13,17 +13,19 @@ morgan.token('body', function getBody(request,response){
 })
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
 
+let persons =[]
+
 app.get('/',(request, response)=>{
 
     response.send('<h1>Hello World!</h1>')
 })
 app.get('/api/persons',(request, response)=>{
-    Person.find({}).then(persons =>{
-    response.json(persons)
+    Person.find({}).then((persons) =>{
+        response.json(persons)
     })
 })
 app.get('/api/persons/:id',(request, response)=>{
-    Person.findById(request.params.id).then(person=>{
+    Person.findById(request.params.id).then((person)=>{
         response.json(person)
     })
 })
@@ -43,14 +45,12 @@ app.post('/api/persons',(request,response) =>{
     const body = request.body
     if (!body.name || !body.number){
         return response.status(400).json({error: 'Number or name missing'})
-    }else if(persons.map(person => person.name.toLowerCase()).includes(body.name.toLowerCase())){
-        return response.status(400).json({error: `Name ${body.name} already exists`})
     }
     const person = new Person({
         name: body.name,
         number: body.number,
     })
-    person.save().then(savedPerson=>{
+    person.save().then((savedPerson)=>{
     response.json(savedPerson)})
 
 })
