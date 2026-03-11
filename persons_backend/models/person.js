@@ -8,8 +8,15 @@ console.log("Connecting to",url)
 mongoose.connect(url, { family: 4 }).then(result=>{console.log('Connected')}).catch((error)=>{console.log("Error", error.message)})
 
 const personSchema = new mongoose.Schema({
-  name: String,
-  number: String,
+  name: {
+    type: String,
+    minLength : 3,
+    required : true
+  },
+  number: {
+    type: String,
+    required : true
+  }
 })
 
 personSchema.set('toJSON', {
