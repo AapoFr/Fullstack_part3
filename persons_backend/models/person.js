@@ -4,8 +4,8 @@ mongoose.set('strictQuery', false)
 const url = process.env.MONGODB_URI
 
 
-console.log("Connecting to",url)
-mongoose.connect(url, { family: 4 }).then(result=>{console.log('Connected')}).catch((error)=>{console.log("Error", error.message)})
+console.log('Connecting to',url)
+mongoose.connect(url, { family: 4 }).then(() => {console.log('Connected')}).catch((error) => {console.log('Error', error.message)})
 
 const personSchema = new mongoose.Schema({
   name: {
